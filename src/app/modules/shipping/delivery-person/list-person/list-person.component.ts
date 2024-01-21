@@ -28,6 +28,10 @@ export class ListPersonComponent implements OnInit{
     constructor(private deliveryPersonService: DeliveryPersonService ) {}
 
     ngOnInit(): void {
+        this.getAllDVPerson()
+    }
+
+    getAllDVPerson(){
         this.deliveryPersonService.getDonnees().subscribe(data => {
             this.items = data;
             this.filteredItem = data;

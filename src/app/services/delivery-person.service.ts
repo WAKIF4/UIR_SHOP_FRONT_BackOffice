@@ -17,4 +17,6 @@ export class DeliveryPersonService {
     getDonnees(): Observable<DeliveryPerson[]> {
         return this.http.get<DeliveryPerson[]>(`${this.apiUrl}`);
     }
+
+    
 }

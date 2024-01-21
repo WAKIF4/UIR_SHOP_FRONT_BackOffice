@@ -4,11 +4,12 @@
             <tr>
                 <th>id</th>
                 <th>Adresse</th>
-                
+
                 <th>Status</th>
                 <th>Etat de Paiment</th>
                 <th>Mode de paiment</th>
                 <th>Prix Total</th>
+                <th>Livreur</th>
                 <th class="text-center">Action</th>
             </tr>
         </thead>
@@ -17,72 +18,96 @@
                 <td class="whitespace-nowrap"> {{data.id}} </td>
                 <td> {{pars(data.client) || ''}} </td>
                 <td> {{data.totalPaye}} </td>
+                
                 <td>
-                    <span
-                        class="badge whitespace-nowrap"
-                        [ngClass]="{
+                    <span class="badge whitespace-nowrap" [ngClass]="{
                                 'bg-primary': data.status == 'PENDING',
                                 'bg-success': data.status == 'DELIVERED',
                                 'bg-danger': data.status == 'CANCELLED'
-                            }">  {{data.status}} </span
-                    >
+                            }"> {{data.status}} </span>
                 </td>
                 <td>
-                    <span
-                        class="badge whitespace-nowrap"
-                        [ngClass]="{
+                    <span class="badge whitespace-nowrap" [ngClass]="{
                                 'bg-danger': data.etatPaiement == 'ANNULE',
                                 'bg-success': data.etatPaiement == 'PAYE',
                                 'bg-primary': data.etatPaiement == 'EN_ATTENTE'
-                            }">  {{data.etatPaiement}} </span>
-                    </td>
-                
-                    
-                    <td>{{data.methodDePaiement =='EN_LIGNE' ? "EN LIGNE" : "A LA LIVRAISON"}}</td>
+                            }"> {{data.etatPaiement}} </span>
+                </td>
+
+
+                <td>{{data.methodDePaiement =='EN_LIGNE' ? "EN LIGNE" : "A LA LIVRAISON"}}</td>
                 <td> {{data.totalPaye}} </td>
+                <td  > 
+                    {{data.deliveryPerson !=null ? data.deliveryPerson.fullname : 'null'}}
+                </td>
                 <td class="text-center">
-                    <div class="dropdown w-max"  (click)="actionClick(data.id)" >
+                    <div class="dropdown w-max" (click)="actionClick(data.id)">
                         <div hlMenu>
                             <a hlMenuButton href="javascript:;" class="align-middle">
-                                <svg class="m-auto h-5 w-5 opacity-70" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="m-auto h-5 w-5 opacity-70" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="5" cy="12" r="2" stroke="currentColor" stroke-width="1.5"></circle>
-                                    <circle opacity="0.5" cx="12" cy="12" r="2" stroke="currentColor" stroke-width="1.5"></circle>
+                                    <circle opacity="0.5" cx="12" cy="12" r="2" stroke="currentColor"
+                                        stroke-width="1.5"></circle>
                                     <circle cx="19" cy="12" r="2" stroke="currentColor" stroke-width="1.5"></circle>
                                 </svg>
                             </a>
-                            <ul  class="ltr:right-0 rtl:left-0 " [class.hidden]="data.id !== dataId">
+                            <ul class="ltr:right-0 rtl:left-0 " [class.hidden]="data.id !== dataId">
                                 <li>
                                     <a href="javascript:;">Download</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:;" >Share</a>
+                                    <a href="javascript:;">Share</a>
                                 </li>
-                                <li>
-                                    <a href="javascript:;"  >Edit</a>
+
+                                <li *ngIf="data.deliveryPerson ==null" >
+                                    <a href="javascript:;" (click)="getIdEdit(data.id)">Edit</a>
                                 </li>
 
                                 <li>
-                                    <a href="javascript:;" (click)="getId(data.id)">Delete</a>
+                                    <a href="javascript:;" (click)="showAlert(data.id)">Delete</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </td>
             </tr>
-            
+
         </tbody>
     </table>
 </div>
-<modal #modal1 class="modal-top">
-    <ng-template #modalHeader> <div>Modal Title</div> </ng-template>
+
+
+<!-- <modal #modal1 class="modal-top">
+    <ng-template #modalHeader>
+        <div>Modal Title</div>
+    </ng-template>
     <ng-template #modalBody>
         <p>
-           Voulez vous supprimez cette livraison?
+            Voulez vous supprimez cette livraison?
         </p>
     </ng-template>
     <ng-template #modalFooter>
         <button type="button" (click)="modal1.close()" class="btn btn-outline-primary">ANNULER</button>
         <button type="button" (click)="deleteById(idModel)" class="btn btn-outline-danger">SUPPRIMER</button>
+    </ng-template>
+</modal> -->
+
+
+<modal #modal2 class="modal-top">
+    <ng-template #modalHeader>
+        <div>EDIT</div>
+    </ng-template>
+    <ng-template #modalBody>
+        <select id="countries" [(ngModel)]="livreurId"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            
+            <option *ngFor="let item of devList" value="{{item.id}}" >{{item.fullname}}</option>
+        </select>
+    </ng-template>
+    <ng-template #modalFooter>
+        <button type="button" (click)="modal2.close()" class="btn btn-outline-primary">ANNULER</button>
+        <button type="button" (click)="editLivreur(livreurId,idModel)" class="btn btn-outline-danger">CONFIRME</button>
     </ng-template>
 </modal>
 
@@ -90,14 +115,17 @@
 
 
 
-  
     
-  
 
-    
+
+
+
+
+
+
+
+
+
 
 
 <!-- script -->
-
-
-

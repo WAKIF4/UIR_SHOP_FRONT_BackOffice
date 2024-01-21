@@ -21,4 +21,13 @@ deleteById(id:Number | null):Observable<OrderForm>{
   return this.http.delete<OrderForm>(this.url+"orders/"+id)
 }
 
+getById(id:Number | null){
+  return this.http.get<OrderForm>(`${this.url}orders/${id}`);
+}
+addPerToDvp(idPer:Number | null,idDev:Number | null):Observable<OrderForm>{
+  const Dev=this.http.get<OrderForm>(this.url+"orders/"+idDev)
+  return this.http.put<OrderForm>(this.url+"orders/order/"+idPer+"/"+idDev,Dev)
+
+}
+
 }

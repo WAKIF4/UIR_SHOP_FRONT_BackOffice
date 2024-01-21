@@ -49,6 +49,7 @@ import {ShippingModule} from "./modules/shipping/shipping.module";
 import {StockModule} from "./modules/stock/stock.module";
 import {SupplierModule} from "./modules/supplier/supplier.module";
 import {PaymentModule} from "./modules/payment/payment.module";
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import {PaymentModule} from "./modules/payment/payment.module";
         BrowserModule,
         BrowserAnimationsModule,
         CommonModule,
+        NgSelectModule,
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
