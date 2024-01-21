@@ -10,6 +10,7 @@ import { EditPersonComponent } from './delivery-person/edit-person/edit-person.c
 import { ListPersonComponent } from './delivery-person/list-person/list-person.component';
 import {FormsModule} from "@angular/forms";
 import { ModalModule } from 'angular-custom-modal';
+import { ProfilePersonComponent } from './delivery-person/profile-person/profile-person.component';
 
 
 
@@ -22,7 +23,8 @@ import { ModalModule } from 'angular-custom-modal';
         ViewShippingComponent,
         CreatePersonComponent,
         EditPersonComponent,
-        ListPersonComponent
+        ListPersonComponent,
+        ProfilePersonComponent
     ],
     exports: [
         ListShippingComponent
@@ -30,7 +32,6 @@ import { ModalModule } from 'angular-custom-modal';
     imports: [
         CommonModule,
         FormsModule,
-        ModalModule
-    ]
-})
+        ModalModule]
+    })
 export class ShippingModule { }
