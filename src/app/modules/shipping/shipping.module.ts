@@ -25,7 +25,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
         ViewShippingComponent,
         CreatePersonComponent,
         EditPersonComponent,
-        ListPersonComponent
+        ListPersonComponent,
+        ProfilePersonComponent
     ],
     exports: [
         ListShippingComponent
