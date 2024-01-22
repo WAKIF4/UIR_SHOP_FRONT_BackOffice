@@ -7,6 +7,7 @@ import {AuthLayout} from './layouts/auth-layout';
 import {ListPersonComponent} from "./modules/shipping/delivery-person/list-person/list-person.component";
 import {AppComponent} from "./app.component";
 import { ListShippingComponent } from './modules/shipping/list-shipping/list-shipping.component';
+import { AllShippingListComponent } from './modules/shipping/delivery-person/all-shipping-list/all-shipping-list.component';
 
 export const routes: Routes = [
     {
@@ -34,6 +35,11 @@ export const routes: Routes = [
                     },{
                         path: 'delivery',
                         component: ListShippingComponent,
+                        title: 'List Delivery'
+                    },
+                    {
+                        path: 'dvPerson',
+                        component: AllShippingListComponent,
                         title: 'List Delivery'
                     }
                 ]

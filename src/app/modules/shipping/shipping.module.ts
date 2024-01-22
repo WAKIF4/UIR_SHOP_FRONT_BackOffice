@@ -11,6 +11,7 @@ import { ListPersonComponent } from './delivery-person/list-person/list-person.c
 import {FormsModule} from "@angular/forms";
 import { ModalModule } from 'angular-custom-modal';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { AllShippingListComponent } from './delivery-person/all-shipping-list/all-shipping-list.component';
 
 
 
