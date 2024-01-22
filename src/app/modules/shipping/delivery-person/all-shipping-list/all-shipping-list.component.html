@@ -1,4 +1,11 @@
-<div>
+<div *ngIf="filteredItem.length==0">
+
+<input type="text"  id="" [(ngModel)]="idPer" >
+
+<button (click)="getDelivery(idPer)" style="background-color: black; color: white;">eajkfnkjeznckjsdbhckjdfdfjkbn</button>
+
+</div>
+<div *ngIf="filteredItem.length>0">
     <div class="flex">
         <form class="mx-auto mb-5 w-full sm:w-1/2">
             <div class="relative">
@@ -34,12 +41,13 @@
                 <div class="user-profile">
                     <img src='assets/images/delivery.jpg' alt="" class="h-8 w-8 rounded-md object-cover" />
                 </div>
-                <div>
-                    {{item.id}} 
-                     {{ item.fullname }}</div>
+                <div >{{pars(item.client).fullName}}</div>
+                <div >{{pars(item.client).address}}</div>
+                <div >{{item.etatPaiement}}</div>
 
-                <div> {{ item.email }} </div>
-                <div class="badge" [ngClass]="{'badge-outline-primary': item.status === DeliveryPersonStatus.AVAILABLE, 'badge-outline-unavailable': item.status === DeliveryPersonStatus.UNAVAILABLE}">
+                <!-- <div> {{ item.email }} </div> -->
+                <!-- <div class="badge" [ngClass]="{'badge-outline-primary': item.status === DeliveryPersonStatus.AVAILABLE, 'badge-outline-unavailable': item.status === DeliveryPersonStatus.UNAVAILABLE}"> -->
+                    <div>
                     {{ item.status }}
                 </div>
 
@@ -67,7 +75,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:;" ngxTippy data-tippy-content="Edit">
+                            <a href="javascript:;" ngxTippy data-tippy-content="Edit" (click)="showAlert(item.id)">
                                 <svg
                                     width="24"
                                     height="24"
@@ -125,3 +133,23 @@
         </ng-container>
     </div>
 </div>
+
+
+
+<modal #modal1 class="modal-top">
+    <ng-template #modalHeader>
+        <div>EDIT</div>
+    </ng-template>
+    <ng-template #modalBody>
+        <select id="countries"
+         [(ngModel)]="selectOption"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            
+            <option *ngFor="let item of status" value="{{item}}" >{{item}}</option>
+        </select>
+    </ng-template>
+    <ng-template #modalFooter>
+        <button type="button" (click)="modal1.close()" class="btn btn-outline-primary">ANNULER</button>
+        <button type="button" (click)="editStatus(idLivraison)" class="btn btn-outline-danger">CONFIRME</button>
+    </ng-template>
+</modal>
