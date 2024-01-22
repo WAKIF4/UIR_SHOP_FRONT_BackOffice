@@ -1,10 +1,10 @@
 <div *ngIf="filteredItem.length==0">
 
-<input type="text"  id="" [(ngModel)]="idPer" >
-
-<button (click)="getDelivery(idPer)" style="background-color: black; color: white;">eajkfnkjeznckjsdbhckjdfdfjkbn</button>
+    <input type="number" placeholder="Delivery Person Id" class="form-input" required  [(ngModel)]="idPer"/>
+    <button type="button" class="btn btn-primary mt-6" (click)="getDelivery(idPer)">Recherche</button>
 
 </div>
+
 <div *ngIf="filteredItem.length>0">
     <div class="flex">
         <form class="mx-auto mb-5 w-full sm:w-1/2">
@@ -28,9 +28,7 @@
                 </button>
             </div>
         </form>
-        <div>
-            <button type="button" class="btn btn-primary rounded-full">Add Delivery</button>
-        </div>
+        
     </div>
 
     <div class="block w-full space-y-4 overflow-x-auto rounded-lg border border-white-dark/20 p-4">
@@ -153,3 +151,5 @@
         <button type="button" (click)="editStatus(idLivraison)" class="btn btn-outline-danger">CONFIRME</button>
     </ng-template>
 </modal>
+
+

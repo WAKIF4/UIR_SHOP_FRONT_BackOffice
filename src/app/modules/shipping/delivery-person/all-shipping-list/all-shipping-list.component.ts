@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { error } from 'console';
 import { OrderForm } from 'src/app/models/delivery/delivery.model';
 import { OrderStatus } from 'src/app/models/delivery/enum/deliveryStatus.enum';
 import { ShippingService } from 'src/app/services/shipping.service';
@@ -10,6 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./all-shipping-list.component.css']
 })
 export class AllShippingListComponent implements OnInit {
+
 
 
   ngOnInit(): void {
@@ -27,13 +29,19 @@ export class AllShippingListComponent implements OnInit {
   constructor(private service:ShippingService){}
 
   getDelivery(id:number){
-    this.service.getDvByperId(id).subscribe(data=>{
+    this.service.getDvByperId(id).subscribe({   
+         next:data=>{
       // console.log("delivery details", data);
        this.items=data.filter(d=>{
         return d.status=="PENDING"})
       // this.items = this.pending;
       this.filteredItem = this.items;
-    })
+    },
+  error:e=>{
+    // alert(e.error.message)
+    this.DvPNF()
+    this.idPer=0
+  }})
   }
 
   searchResults() {
@@ -69,8 +77,15 @@ pars(str: string): any  {
 //   this.modal1.open()
 //   }
 editStatus(id:number){
-  this.service.editStatus(id).subscribe(data=>{console.log(data)});
+  this.service.editStatus(id).subscribe({
+    next:data=>{
+    console.log(data);
   this.getDelivery(this.idPer)
+  },
+error:(e)=>{
+  alert("error")
+  console.log(e)
+}})
   
 }
 
@@ -93,5 +108,31 @@ async showAlert(arg:number) {
   });
 }
 
+// coloredToast(color:string){
+//   const toast = Swal.mixin({
+//       toast: true,
+//       position: 'bottom-start',
+//       showConfirmButton: false,
+//       timer: 3000,
+//       showCloseButton: true,
+//       customClass: {
+//           popup: `color-${color}`
+//       },
+//       target: document.getElementById(color + '-toast')
+//   });
+//   toast.fire({
+//       title: 'Example notification text.',
+//   });
+// };
+async DvPNF() {
+  Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Delivery Person Not Found',
+      // footer: '<a href="javascript:;">Why do I have this issue?</a>',
+      padding: '2em',
+      customClass: 'sweet-alerts',
+  });
+}
 
 }
