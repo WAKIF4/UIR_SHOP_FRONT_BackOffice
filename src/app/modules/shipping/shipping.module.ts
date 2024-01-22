@@ -27,7 +27,7 @@ import { AllShippingListComponent } from './delivery-person/all-shipping-list/al
         CreatePersonComponent,
         EditPersonComponent,
         ListPersonComponent,
-        AllShippingListComponent
+        ProfilePersonComponent
     ],
     exports: [
         ListShippingComponent
