@@ -16,6 +16,7 @@ import { ModalModule } from "angular-custom-modal";
 
 @NgModule({
   declarations: [
+    
   ],
   imports: [
       OrderModule,
