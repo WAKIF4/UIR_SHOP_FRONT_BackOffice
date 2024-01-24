@@ -10,6 +10,7 @@ import { OrderForm } from '../models/delivery/delivery.model';
 })
 export class ShippingService {
 url:String=environment.livraisonApi;
+devUrl:String=environment.deliveryPersonApi
 
 constructor(private http: HttpClient) {}
 
@@ -29,5 +30,11 @@ addPerToDvp(idPer:Number | null,idDev:Number | null):Observable<OrderForm>{
   return this.http.put<OrderForm>(this.url+"orders/order/"+idPer+"/"+idDev,Dev)
 
 }
+getDvByperId(id:Number):Observable<OrderForm[]>{
+  return this.http.get<OrderForm[]>(this.devUrl+"/"+id+"/orders")
+}
 
+editStatus(id:Number):Observable<OrderForm>{
+  return this.http.post<OrderForm>(this.url+"orders/status/"+id,null)
+}
 }

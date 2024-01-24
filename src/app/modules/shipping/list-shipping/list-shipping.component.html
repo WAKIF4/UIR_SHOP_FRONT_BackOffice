@@ -112,6 +112,45 @@
 </modal>
 
 
+<!-- live search -->
+<!-- <div>
+    <form class="mx-auto mb-5 w-full sm:w-1/2">
+        <div class="relative">
+            <input
+                type="text"
+                placeholder="Search Attendees..."
+                class="form-input h-11 rounded-full bg-white shadow-[0_0_4px_2px_rgb(31_45_61_/_10%)] placeholder:tracking-wider ltr:pr-11 rtl:pl-11"
+                [(ngModel)]="search"
+                (ngModelChange)="searchResults()"
+                name="search"
+            />
+            <button
+                type="button"
+                class="btn btn-primary absolute inset-y-0 m-auto flex h-9 w-9 items-center justify-center rounded-full p-0 ltr:right-1 rtl:left-1"
+            >
+                <svg> </svg>
+            </button>
+        </div>
+    </form>
+    <div class="block w-full space-y-4 overflow-x-auto rounded-lg border border-white-dark/20 p-4">
+        <ng-container *ngFor="let item of filteredItem; index as i">
+            <div
+                class="flex min-w-[625px] items-center justify-between rounded-xl bg-white p-3 font-semibold text-gray-500 shadow-[0_0_4px_2px_rgb(31_45_61_/_10%)] transition-all duration-300 hover:scale-[1.01] hover:text-primary dark:bg-[#1b2e4b]"
+            >
+                <div class="user-profile">
+                    <img [src]="'/assets/images/' +item.thumb" alt="" class="h-8 w-8 rounded-md object-cover" />
+                </div>
+                <div> {{item.name }}</div>
+                <div> {{item.email}} </div>
+                <div class="badge border-2 border-dashed" [ngClass]="item.statusClass"> {{item.status}} </div>
+                <div class="cursor-pointer">
+                    <svg> </svg>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div> -->
+
 
 
 
