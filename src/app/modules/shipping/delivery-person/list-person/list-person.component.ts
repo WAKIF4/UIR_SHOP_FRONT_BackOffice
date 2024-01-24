@@ -6,6 +6,8 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 import { ItemsList } from '@ng-select/ng-select/lib/items-list';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-list-person',
@@ -37,7 +39,8 @@ export class ListPersonComponent implements OnInit{
       existingDeliveryPerson: DeliveryPerson = {} as DeliveryPerson
       
       @ViewChild('updateModal') updateModal: any;
-      
+     
+
     
   
     constructor(private deliveryPersonService: DeliveryPersonService) {}
@@ -46,10 +49,7 @@ export class ListPersonComponent implements OnInit{
         this.getAllDVPerson()
     }
 
-  //   openUpdateModal(deliveryPerson: DeliveryPerson) {
-  //     this.existingDeliveryPerson = { ...deliveryPerson }; 
-  //     this.updateModal.open();
-  // }
+  
 
     getAllDVPerson(){
         this.deliveryPersonService.getDonnees().subscribe(data => {
@@ -126,4 +126,48 @@ export class ListPersonComponent implements OnInit{
           }
         );
       }
+
+      showAlert(item: { id: number }) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Are you sure?',
+          showCancelButton: true,
+          confirmButtonText: 'Delete',
+          cancelButtonText: 'Cancel', 
+          padding: '2em',
+          customClass: 'sweet-alerts',
+        }).then((result) => {
+          if (result.value) {
+            this.deleteDeliveryPerson(item.id);
+            Swal.fire({ title: 'Deleted!', text: 'Ha99 Mchaaa !!!!', icon: 'success', customClass: 'sweet-alerts' });
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+            Swal.fire({ title: 'Cancelled', icon: 'info', customClass: 'sweet-alerts' });
+          }
+        });
+      }
+
+      deleteAndShowAlert(item: { id: number }): void {
+        //this.deleteDeliveryPerson(item.id);
+        this.showAlert(item);
+      }
+
+      
+
+      saveShowAlert() {
+        Swal.fire({
+          title: 'Saved successfully',
+          padding: '2em',
+          customClass: 'sweet-alerts',
+        });
+      }
+
+      updateShowAlert() {
+        Swal.fire({
+          title: 'Update successfully',
+          padding: '2em',
+          customClass: 'sweet-alerts',
+        });
+      }
+
+      
 }

@@ -50,7 +50,7 @@
                 <div>
                     <ul class="flex items-center justify-center gap-2">
                         <li>
-                            <button ngxTippy data-tippy-content="Profile">
+                            <button ngxTippy data-tippy-content="Profile" (click)="modal19.open();existingDeliveryPerson=item">
                                 <svg 
                                 xmlns="http://www.w3.org/2000/svg" 
                                 fill="none" 
@@ -93,7 +93,7 @@
                         </button>
                         </li>
                         <li>
-                            <button ngxTippy data-tippy-content="Delete" (click)="deleteDeliveryPerson(item.id)">
+                            <button ngxTippy data-tippy-content="Delete"  (click)="deleteAndShowAlert(item)">
                               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-danger">
                                 <path d="M20.5 6H3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                                     <path
@@ -162,7 +162,7 @@
                 </span>
                 <input type="text" placeholder="Status" class="form-input ltr:pl-10 rtl:pr-10" [(ngModel)]="newDeliveryPerson.status" [ngModelOptions]="{standalone: true}" />
             </div>
-            <button type="submit" class="btn btn-primary w-full">Submit</button>
+            <button type="submit" class="btn btn-primary w-full" (click)="saveShowAlert()">Submit</button>
         </form>
         
     </ng-template>
@@ -211,10 +211,58 @@
                 </span>
                 <input type="text" placeholder="Status" class="form-input ltr:pl-10 rtl:pr-10" [(ngModel)]="existingDeliveryPerson.status" [ngModelOptions]="{standalone: true}" />
             </div>
-            <button type="submit" class="btn btn-primary w-full">Update</button>
+            <button type="submit" class="btn btn-primary w-full" (click)="updateShowAlert()">Update</button>
         </form>
     </ng-template>
 </modal>  
+
+
+
+  <!-- Modal -->
+  <modal #modal19 class="modal-top profile-modal" >
+      <ng-template #modalBody>
+                    <div class="user-profile flex items-center">
+                        <img src='assets/images/delivery.jpg' alt="" class="h-8 w-8 rounded-md object-cover" />
+                    </div>
+                <div class="mt-4">
+                    <table class="min-w-full bg-white border border-gray-300">
+                      <thead>
+                        <tr>
+                          <th class="py-2 px-4 border-b">Property</th>
+                          <th class="py-2 px-4 border-b">Value</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="py-2 px-4 border-b font-semibold">ID</td>
+                          <td class="py-2 px-4 border-b">{{existingDeliveryPerson.id}}</td>
+                        </tr>
+                        <tr>
+                          <td class="py-2 px-4 border-b font-semibold">Name</td>
+                          <td class="py-2 px-4 border-b">{{existingDeliveryPerson.fullname}}</td>
+                        </tr>
+                        <tr>
+                          <td class="py-2 px-4 border-b font-semibold">Email</td>
+                          <td class="py-2 px-4 border-b">{{existingDeliveryPerson.email}}</td>
+                        </tr>
+                        <tr>
+                          <td class="py-2 px-4 border-b font-semibold">City</td>
+                          <td class="py-2 px-4 border-b">{{existingDeliveryPerson.city}}</td>
+                        </tr>
+                        <tr>
+                          <td class="py-2 px-4 border-b font-semibold">Phone</td>
+                          <td class="py-2 px-4 border-b">{{existingDeliveryPerson.phone}}</td>
+                        </tr>
+                        <tr>
+                          <td class="py-2 px-4 border-b font-semibold">Status</td>
+                          <td class="py-2 px-4 border-b">{{existingDeliveryPerson.status}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  
+      </ng-template>
+  </modal>
 
 
 </div>
