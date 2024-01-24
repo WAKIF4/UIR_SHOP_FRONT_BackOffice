@@ -8,7 +8,7 @@
                     class="form-input h-11 rounded-full bg-white shadow-[0_0_4px_2px_rgb(31_45_61_/_10%)] placeholder:tracking-wider ltr:pr-11 rtl:pl-11"
                     [(ngModel)]="search"
                     (ngModelChange)="searchResults()"
-                    name="search"
+                    name="search" 
                 />
                 <button
                     type="button"
@@ -22,9 +22,15 @@
             </div>
         </form>
         <div>
-            <button type="button" class="btn btn-primary rounded-full" (click)="modal21?.open()">Add Delivery</button>
+            <button type="button" class="btn btn-primary rounded-full" (click)="modal21?.open()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+                  </svg>
+                  
+            </button>
         </div>
     </div>
+
 
     <div class="block w-full space-y-4 overflow-x-auto rounded-lg border border-white-dark/20 p-4">
         <ng-container *ngFor="let item of filteredItem; index as i">
@@ -34,9 +40,7 @@
                 <div class="user-profile">
                     <img src='assets/images/delivery.jpg' alt="" class="h-8 w-8 rounded-md object-cover" />
                 </div>
-                <div>
-                    {{item.id}} 
-                     {{ item.fullname }}</div>
+                <div> {{ item.fullname }}  </div>
 
                 <div> {{ item.email }} </div>
                 <div class="badge" [ngClass]="{'badge-outline-primary': item.status === DeliveryPersonStatus.AVAILABLE, 'badge-outline-unavailable': item.status === DeliveryPersonStatus.UNAVAILABLE}">
@@ -45,29 +49,26 @@
 
                 <div>
                     <ul class="flex items-center justify-center gap-2">
-
                         <li>
-                            <a href="javascript:;" ngxTippy data-tippy-content="Profile">
-                                <svg
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-5 w-5 text-primary">
-                                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"></circle>
+                            <button ngxTippy data-tippy-content="Profile" (click)="modal19.open();existingDeliveryPerson=item">
+                                <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-6 h-6">
                                     <path
-                                        opacity="0.5"
-                                        d="M20 12L4 12"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    ></path>
-                                </svg>
-                            </a>
+                                     stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                       d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                                  </svg>
+                                  
+                            </button>
+                            
                         </li>
                         <li>
-                            <a href="javascript:;" ngxTippy data-tippy-content="Edit">
+                            <button ngxTippy data-tippy-content="Edit" (click)="updateModal.open();existingDeliveryPerson=item">
                                 <svg
                                     width="24"
                                     height="24"
@@ -88,19 +89,13 @@
                                         stroke-width="1.5"
                                     />
                                 </svg>
-                            </a>
+                        
+                        </button>
                         </li>
                         <li>
-                            <a href="javascript:;" ngxTippy data-tippy-content="Delete">
-                                <svg
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-5 w-5 text-danger"
-                                >
-                                    <path d="M20.5001 6H3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                            <button ngxTippy data-tippy-content="Delete"  (click)="deleteAndShowAlert(item)">
+                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-danger">
+                                <path d="M20.5 6H3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                                     <path
                                         d="M18.8334 8.5L18.3735 15.3991C18.1965 18.054 18.108 19.3815 17.243 20.1907C16.378 21 15.0476 21 12.3868 21H11.6134C8.9526 21 7.6222 21 6.75719 20.1907C5.89218 19.3815 5.80368 18.054 5.62669 15.3991L5.16675 8.5"
                                         stroke="currentColor"
@@ -116,54 +111,160 @@
                                         stroke-width="1.5"
                                     />
                                 </svg>
-                            </a>
+                            </button>
                         </li>
                     </ul>
                 </div>
 
             </div>
         </ng-container>
-        <!-- Register -->
+        
 <div>
-    <!-- Modal -->
-    <modal #modal21 class="modal-top auth-modal">
-        <ng-template #modalHeader> <div class="!py-5">Add Delivery Person</div> </ng-template>
-        <ng-template #modalBody>
-            <form>
-                <div class="relative mb-4">
-                    <span class="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5">
-                            <circle cx="12" cy="6" r="4" stroke="currentColor" stroke-width="1.5" />
-                            <ellipse opacity="0.5" cx="12" cy="17" rx="7" ry="4" stroke="currentColor" stroke-width="1.5" />
-                        </svg>
-                    </span>
-                    <input type="text" placeholder="Name" class="form-input ltr:pl-10 rtl:pr-10" />
-                </div>
-                <div class="relative mb-4">
-                    <span class="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5">
-                            <path
-                                d="M12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12C18 12.7215 17.8726 13.4133 17.6392 14.054C17.5551 14.285 17.4075 14.4861 17.2268 14.6527L17.1463 14.727C16.591 15.2392 15.7573 15.3049 15.1288 14.8858C14.6735 14.5823 14.4 14.0713 14.4 13.5241V12M14.4 12C14.4 13.3255 13.3255 14.4 12 14.4C10.6745 14.4 9.6 13.3255 9.6 12C9.6 10.6745 10.6745 9.6 12 9.6C13.3255 9.6 14.4 10.6745 14.4 12Z"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                            />
-                            <path
-                                opacity="0.5"
-                                d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12Z"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                            />
-                        </svg>
-                    </span>
-                    <input type="email" placeholder="Email" class="form-input ltr:pl-10 rtl:pr-10" />
-                </div>
-               
+<!-- Modal -->
+<modal #modal21 class="modal-top auth-modal">
+    <ng-template #modalHeader>
+        <div class="!py-5">Add Delivery Person</div>
+    </ng-template>
+    <ng-template #modalBody>
+        <form (ngSubmit)="createDeliveryPerson();modal21.close()">
+            <div class="relative mb-4">
+                <span class="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5">
+                    </svg>
+                </span>
+                <input type="text" placeholder="Name" class="form-input ltr:pl-10 rtl:pr-10" [(ngModel)]="newDeliveryPerson.fullname" [ngModelOptions]="{standalone: true}" />
+            </div>
+            <div class="relative mb-4">
+                <span class="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5">
+                    </svg>
+                </span>
+                <input type="email" placeholder="Email" class="form-input ltr:pl-10 rtl:pr-10" [(ngModel)]="newDeliveryPerson.email" [ngModelOptions]="{standalone: true}" />
+            </div>
+            <div class="relative mb-4">
+                <span class="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5">
+                    </svg>
+                </span>
+                <input type="tel" placeholder="Phone" class="form-input ltr:pl-10 rtl:pr-10" [(ngModel)]="newDeliveryPerson.phone" [ngModelOptions]="{standalone: true}" />
+            </div>
+            <div class="relative mb-4">
+                <span class="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5">
+                    </svg>
+                </span>
+                <input type="text" placeholder="City" class="form-input ltr:pl-10 rtl:pr-10" [(ngModel)]="newDeliveryPerson.city" [ngModelOptions]="{standalone: true}" />
+            </div>
+            <div class="relative mb-4">
+                <span class="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5">
+                    </svg>
+                </span>
+                <input type="text" placeholder="Status" class="form-input ltr:pl-10 rtl:pr-10" [(ngModel)]="newDeliveryPerson.status" [ngModelOptions]="{standalone: true}" />
+            </div>
+            <button type="submit" class="btn btn-primary w-full" (click)="saveShowAlert()">Submit</button>
+        </form>
+        
+    </ng-template>
+</modal>
 
-                <button type="button" class="btn btn-primary w-full">Submit</button>
-            </form>
-        </ng-template>
-    </modal>
+
+<!-- Modal -->
+<modal #updateModal class="modal-top auth-modal">
+    <ng-template #modalHeader>
+        <div class="!py-5">Update Delivery Person</div>
+    </ng-template>
+    <ng-template #modalBody>
+        <form (ngSubmit)="updateDeliveryPerson(existingDeliveryPerson.id);updateModal.close()">
+            <div class="relative mb-4">
+                <span class="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5">
+                    </svg>
+                </span>
+                <input type="text" placeholder="Name" class="form-input ltr:pl-10 rtl:pr-10" [(ngModel)]="existingDeliveryPerson.fullname" [ngModelOptions]="{standalone: true}" />
+            </div>
+            <div class="relative mb-4">
+                <span class="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5">
+                    </svg>
+                </span>
+                <input type="email" placeholder="Email" class="form-input ltr:pl-10 rtl:pr-10" [(ngModel)]="existingDeliveryPerson.email" [ngModelOptions]="{standalone: true}" />
+            </div>
+            <div class="relative mb-4">
+                <span class="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5">
+                    </svg>
+                </span>
+                <input type="tel" placeholder="Phone" class="form-input ltr:pl-10 rtl:pr-10" [(ngModel)]="existingDeliveryPerson.phone" [ngModelOptions]="{standalone: true}"/>
+            </div>
+            <div class="relative mb-4">
+                <span class="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5">
+                    </svg>
+                </span>
+                <input type="text" placeholder="City" class="form-input ltr:pl-10 rtl:pr-10"  [(ngModel)]="existingDeliveryPerson.city" [ngModelOptions]="{standalone: true}"/>
+            </div>
+            <div class="relative mb-4">
+                <span class="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5">
+                    </svg>
+                </span>
+                <input type="text" placeholder="Status" class="form-input ltr:pl-10 rtl:pr-10" [(ngModel)]="existingDeliveryPerson.status" [ngModelOptions]="{standalone: true}" />
+            </div>
+            <button type="submit" class="btn btn-primary w-full" (click)="updateShowAlert()">Update</button>
+        </form>
+    </ng-template>
+</modal>  
+
+
+
+  <!-- Modal -->
+  <modal #modal19 class="modal-top profile-modal" >
+      <ng-template #modalBody>
+                    <div class="user-profile flex items-center">
+                        <img src='assets/images/delivery.jpg' alt="" class="h-8 w-8 rounded-md object-cover" />
+                    </div>
+                <div class="mt-4">
+                    <table class="min-w-full bg-white border border-gray-300">
+                      <thead>
+                        <tr>
+                          <th class="py-2 px-4 border-b">Property</th>
+                          <th class="py-2 px-4 border-b">Value</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="py-2 px-4 border-b font-semibold">ID</td>
+                          <td class="py-2 px-4 border-b">{{existingDeliveryPerson.id}}</td>
+                        </tr>
+                        <tr>
+                          <td class="py-2 px-4 border-b font-semibold">Name</td>
+                          <td class="py-2 px-4 border-b">{{existingDeliveryPerson.fullname}}</td>
+                        </tr>
+                        <tr>
+                          <td class="py-2 px-4 border-b font-semibold">Email</td>
+                          <td class="py-2 px-4 border-b">{{existingDeliveryPerson.email}}</td>
+                        </tr>
+                        <tr>
+                          <td class="py-2 px-4 border-b font-semibold">City</td>
+                          <td class="py-2 px-4 border-b">{{existingDeliveryPerson.city}}</td>
+                        </tr>
+                        <tr>
+                          <td class="py-2 px-4 border-b font-semibold">Phone</td>
+                          <td class="py-2 px-4 border-b">{{existingDeliveryPerson.phone}}</td>
+                        </tr>
+                        <tr>
+                          <td class="py-2 px-4 border-b font-semibold">Status</td>
+                          <td class="py-2 px-4 border-b">{{existingDeliveryPerson.status}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  
+      </ng-template>
+  </modal>
+
+
 </div>
     </div>
 </div>
