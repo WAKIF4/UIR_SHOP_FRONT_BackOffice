@@ -101,8 +101,7 @@ export class ListPersonComponent implements OnInit{
             error: (error) => {
               if (error.status == 200) {
                 console.log('Delivery person deleted successfully.');
-        this.getAllDVPerson()
-
+                this.getAllDVPerson()
               }
               else {
                 console.error('Error deleting delivery person:', error);
