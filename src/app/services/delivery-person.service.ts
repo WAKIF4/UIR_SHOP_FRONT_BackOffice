@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class DeliveryPersonService {
 
-     apiUrl: string  = environment.deliveryPersonApi
+    apiUrl:string=environment.deliveryPersonApi
 
   constructor(private http: HttpClient) {}
 

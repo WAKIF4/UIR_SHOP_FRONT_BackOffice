@@ -12,6 +12,8 @@ import {FormsModule} from "@angular/forms";
 import { ModalModule } from 'angular-custom-modal';
 import { ProfilePersonComponent } from './delivery-person/profile-person/profile-person.component'
 import { NgSelectModule } from '@ng-select/ng-select';
+import { AllShippingListComponent } from './delivery-person/all-shipping-list/all-shipping-list.component';
+import { ProfilePersonComponent } from './delivery-person/profile-person/profile-person.component';
 
 
 
@@ -27,7 +29,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
         CreatePersonComponent,
         EditPersonComponent,
         ListPersonComponent,
-        ProfilePersonComponent
+        ProfilePersonComponent,AllShippingListComponent
     ],
     exports: [
         ListShippingComponent
@@ -36,7 +38,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
         CommonModule,
         FormsModule,
         ModalModule,
-        NgSelectModule
+        NgSelectModule,
     ]
 })
 export class ShippingModule { }
