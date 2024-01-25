@@ -4,12 +4,12 @@
             <tr>
                 <th>id</th>
                 <th>Adresse</th>
-
-                <th>Status</th>
-                <th>Etat de Paiment</th>
-                <th>Mode de paiment</th>
                 <th>Prix Total</th>
+                <th>Etat de Paiment</th>
+                <th>Status de Paiment</th>
+                <th>Mode de paiment</th>
                 <th>Livreur</th>
+                <th>Status</th>
                 <th class="text-center">Action</th>
             </tr>
         </thead>
@@ -32,13 +32,18 @@
                                 'bg-success': data.etatPaiement == 'PAYE',
                                 'bg-primary': data.etatPaiement == 'EN_ATTENTE'
                             }"> {{data.etatPaiement}} </span>
+                            
                 </td>
-
-
-                <td>{{data.methodDePaiement =='EN_LIGNE' ? "EN LIGNE" : "A LA LIVRAISON"}}</td>
-                <td> {{data.totalPaye}} </td>
-                <td  > 
+                <td>
+                    <span>
+                        {{data.methodDePaiement =='EN_LIGNE' ? "EN LIGNE" : "A LA LIVRAISON"}}
+                    </span>
+                </td>
+                <td> 
                     {{data.deliveryPerson !=null ? data.deliveryPerson.fullname : 'null'}}
+                </td>
+                <td> 
+                    {{data.deliveryPerson !=null ? data.deliveryPerson.status : 'null'}}
                 </td>
                 <td class="text-center">
                     <div class="dropdown w-max" (click)="actionClick(data.id)">

@@ -101,8 +101,7 @@ export class ListPersonComponent implements OnInit{
             error: (error) => {
               if (error.status == 200) {
                 console.log('Delivery person deleted successfully.');
-        this.getAllDVPerson()
-
+                this.getAllDVPerson()
               }
               else {
                 console.error('Error deleting delivery person:', error);
@@ -139,7 +138,7 @@ export class ListPersonComponent implements OnInit{
         }).then((result) => {
           if (result.value) {
             this.deleteDeliveryPerson(item.id);
-            Swal.fire({ title: 'Deleted!', text: 'Ha99 Mchaaa !!!!', icon: 'success', customClass: 'sweet-alerts' });
+            Swal.fire({ title: 'Deleted!', icon: 'success', customClass: 'sweet-alerts' });
           } else if (result.dismiss === Swal.DismissReason.cancel) {
             Swal.fire({ title: 'Cancelled', icon: 'info', customClass: 'sweet-alerts' });
           }
