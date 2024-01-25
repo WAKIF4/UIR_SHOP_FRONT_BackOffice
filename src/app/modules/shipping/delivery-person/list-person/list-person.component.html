@@ -43,7 +43,7 @@
                 <div> {{ item.fullname }}  </div>
 
                 <div> {{ item.email }} </div>
-                <div class="badge" [ngClass]="{'badge-outline-primary': item.status === DeliveryPersonStatus.AVAILABLE, 'badge-outline-unavailable': item.status === DeliveryPersonStatus.UNAVAILABLE}">
+                <div class="badge" [ngClass]="{'badge-outline-success': item.status === DeliveryPersonStatus.AVAILABLE, 'badge-outline-unavailable': item.status === DeliveryPersonStatus.UNAVAILABLE}">
                     {{ item.status }}
                 </div>
 
@@ -219,52 +219,38 @@
 
 
   <!-- Modal -->
-  <modal #modal19 class="modal-top profile-modal" >
-      <ng-template #modalBody>
-                    <div class="user-profile flex items-center">
-                        <img src='assets/images/delivery.jpg' alt="" class="h-8 w-8 rounded-md object-cover" />
-                    </div>
-                <div class="mt-4">
-                    <table class="min-w-full bg-white border border-gray-300">
-                      <thead>
-                        <tr>
-                          <th class="py-2 px-4 border-b">Property</th>
-                          <th class="py-2 px-4 border-b">Value</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td class="py-2 px-4 border-b font-semibold">ID</td>
-                          <td class="py-2 px-4 border-b">{{existingDeliveryPerson.id}}</td>
-                        </tr>
-                        <tr>
-                          <td class="py-2 px-4 border-b font-semibold">Name</td>
-                          <td class="py-2 px-4 border-b">{{existingDeliveryPerson.fullname}}</td>
-                        </tr>
-                        <tr>
-                          <td class="py-2 px-4 border-b font-semibold">Email</td>
-                          <td class="py-2 px-4 border-b">{{existingDeliveryPerson.email}}</td>
-                        </tr>
-                        <tr>
-                          <td class="py-2 px-4 border-b font-semibold">City</td>
-                          <td class="py-2 px-4 border-b">{{existingDeliveryPerson.city}}</td>
-                        </tr>
-                        <tr>
-                          <td class="py-2 px-4 border-b font-semibold">Phone</td>
-                          <td class="py-2 px-4 border-b">{{existingDeliveryPerson.phone}}</td>
-                        </tr>
-                        <tr>
-                          <td class="py-2 px-4 border-b font-semibold">Status</td>
-                          <td class="py-2 px-4 border-b">{{existingDeliveryPerson.status}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  
-      </ng-template>
-  </modal>
+  <modal #modal19 class="modal-top profile-modal">
+    <ng-template #modalBody>
+        <div class="mb-5">
+            <div class="flex flex-col items-center justify-center">
+                <img src='assets/images/delivery.jpg' alt="" class="h-8 w-8 rounded-md object-cover" />
+                <p class="text-xl font-semibold text-primary">{{existingDeliveryPerson.fullname}}</p>
+            </div>
+            <ul class="m-auto mt-5 flex  flex-col space-y-4 font-semibold text-white-dark">
+                <li class="flex items-center gap-2">
+                    ID: {{existingDeliveryPerson.id}}
+                </li>
+                <li class="flex items-center gap-2">
+                    {{existingDeliveryPerson.city}}
+                </li>
+                <li>
+                    <a href="javascript:;" class="flex items-center gap-2">
+                        <span class="truncate text-primary">{{existingDeliveryPerson.email}}</span>
+                    </a>
+                </li>
+                <li class="flex items-center gap-2">
+                    <span class="whitespace-nowrap" dir="ltr">{{existingDeliveryPerson.phone}}</span>
+                </li>
+                <li class="flex items-center gap-2">
+                    Status:
+                    <span class="badge bg-success">{{existingDeliveryPerson.status}}</span> 
+                </li>
+            </ul>
+        </div>
+    </ng-template>
+</modal>
 
-
+  
 </div>
     </div>
 </div>
